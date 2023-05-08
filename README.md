@@ -2,13 +2,13 @@
 
 <img align="left" width="100" height="100" src="https://www.icdc.mx/_nuxt/image/8616fa.png">
 
-KVPS is a global tool where the information of Dealers and Importers from all over the world and the brands of the VW consortium resides. The way in which KVPS information is updated, loaded or deleted is through a COM16 file, and an interface that has existed in Mexico for several years.
+URL QR Generator transforms a URL into a QR code. Its function is to redirect users to a web page when the code is scanned. It is perfect for marketing materials.
 
 #
 
 ## Tech
 
-KVPS-COM16 uses a number of open source projects to work properly:
+QR Generator uses a number of open source projects to work properly:
 
 - [React](https://es.react.dev/) - HTML enhanced for web apps!components/pages
 - [Prime React](https://primereact.org/) - great UI boilerplate for modern web apps
@@ -23,7 +23,7 @@ QR-Generator requires [Node.js](https://nodejs.org/) v12+ to run.
 Install the dependencies and devDependencies and start the server.
 
 ```sh
-cd kvps-frontend
+cd qr-generator
 yarn or npm i
 ```
 
