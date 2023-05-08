@@ -1,0 +1,19 @@
+// Exmple: theme-colors
+$theme-colors: (
+  'primary': $color-primary,
+  'primary-md': $color-primary-md,
+  //override from our variables file
+    'secondary': $color-secondary,
+  //override from our variables file
+    'success': $color-positive,
+  'info': $color-strong-blue,
+  'warning': $color-negative,
+  'danger': $color-neutral-yellow,
+  'light': $color-gray,
+  'dark': $color-black,
+  'white': $color-white,
+);
+
+// Change global font font-family
+$font-family-base: $brand-font;
+$headings-font-weight: 300;
