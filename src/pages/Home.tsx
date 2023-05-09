@@ -16,8 +16,6 @@ import QRCodeStyling, {
 } from 'qr-code-styling';
 
 function Home() {
-  const [dcolor, setDcolor] = useState<string>('');
-  const [bcolor, setBcolor] = useState<string>('');
   const [format, setFormat] = useState<string>('');
   const [fimage, setFimage] = useState<string | undefined>();
   const imgOptions = [{ name: 'anonymous' }, { name: 'use-credentials' }];
@@ -38,15 +36,13 @@ function Home() {
     margin: 0,
     qrOptions: {
       typeNumber: 0 as TypeNumber,
-      mode: 'Byte' as Mode,
-      errorCorrectionLevel: 'Q' as ErrorCorrectionLevel,
     },
     dotsOptions: {
       color: '#000000',
       type: 'dots' as DotType,
     },
     cornersSquareOptions: {
-      color: '#222222',
+      color: '#b3f542',
       type: 'extra-rounded' as CornerSquareType,
       gradient: {
         type: 'linear', // 'radial'
@@ -73,6 +69,7 @@ function Home() {
       color: '#ffffff',
     },
     imageOptions: {
+      hideBackgroundDots: true,
       crossOrigin: 'anonymous',
       margin: 4,
     },
@@ -92,6 +89,20 @@ function Home() {
     setOptions((props) => ({
       ...props,
       dotsOptions: { ...options.dotsOptions, [e.target.name]: e.value.name },
+    }));
+  }
+
+  function handleDotColor(dotColor: string) {
+    setOptions((props) => ({
+      ...props,
+      dotsOptions: { ...options.dotsOptions, color: dotColor },
+    }));
+  }
+
+  function handleBackgroundColor(dotColor: string) {
+    setOptions((props) => ({
+      ...props,
+      backgroundOptions: { ...options.backgroundOptions, color: dotColor },
     }));
   }
 
@@ -206,8 +217,10 @@ function Home() {
                   <div className="field col-4 md:col-4 lg:col-4">
                     <p>Color</p>
                     <ColorPicker
-                      value={dcolor}
-                      onChange={(e: ColorPickerChangeEvent) => setDcolor(`#${String(e.value)}`)}
+                      value={options.dotsOptions?.color ?? ''}
+                      onChange={(e: ColorPickerChangeEvent) =>
+                        handleDotColor(`#${String(e.value)}`)
+                      }
                     />
                   </div>
                   <div className="field col-4 md:col-4 lg:col-4">
@@ -218,8 +231,8 @@ function Home() {
                       className="mr-1 w-full h-3rem"
                       name="margin"
                       placeholder="#FFFFFF"
-                      value={dcolor ?? ''}
-                      onChange={(e) => setDcolor(e.target.value)}
+                      value={options.dotsOptions?.color ?? ''}
+                      onChange={(e) => handleDotColor(e.target.value)}
                     />
                   </div>
                   <div className="field col-4 md:col-4 lg:col-4">
@@ -229,7 +242,7 @@ function Home() {
                       className="col-12 h-3rem"
                       optionLabel="name"
                       placeholder=""
-                      value={options.dotsOptions?.type}
+                      value={{ name: options.dotsOptions?.type }}
                       options={dotsTypes}
                       onChange={(e: DropdownChangeEvent) => handleDotOptions(e)}
                     />
@@ -240,8 +253,10 @@ function Home() {
                   <div className="field col-6 md:col-6 lg:col-3">
                     <p>Color</p>
                     <ColorPicker
-                      value={bcolor}
-                      onChange={(e: ColorPickerChangeEvent) => setBcolor(`#${String(e.value)}`)}
+                      value={options.backgroundOptions?.color ?? ''}
+                      onChange={(e: ColorPickerChangeEvent) =>
+                        handleBackgroundColor(`#${String(e.value)}`)
+                      }
                     />
                   </div>
                   <div className="field col-6 md:col-6 lg:col-3">
@@ -252,8 +267,8 @@ function Home() {
                       className="mr-1 w-full h-3rem"
                       name="margin"
                       placeholder="#FFFFFF"
-                      value={bcolor ?? ''}
-                      onChange={(e) => setBcolor(e.target.value)}
+                      value={options.backgroundOptions?.color ?? ''}
+                      onChange={(e) => handleBackgroundColor(e.target.value)}
                     />
                   </div>
                 </div>
